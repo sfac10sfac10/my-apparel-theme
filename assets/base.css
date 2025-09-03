@@ -3595,3 +3595,53 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* === Custom styles === */
+
+.product-specs {
+  margin-top: 1.5rem;
+}
+.product-specs__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.product-specs__table th,
+.product-specs__table td {
+  padding: .5rem .75rem;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  text-align: left;
+}
+.product-specs__table th {
+  width: 30%;
+  font-weight: 600;
+}
+
+.collection-promo-banner {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  background: #111;
+  color: #fff;
+  border-radius: .5rem;
+  text-align: center;
+}
+
+.size-chart { 
+  margin-top: 1rem; 
+}
+.size-chart .button { 
+  display: inline-block; 
+}
+
+.product-accordion { 
+  margin-top: 1rem; 
+  border: 1px solid rgba(0,0,0,.08); 
+  border-radius: .5rem; 
+  padding: .5rem .75rem; 
+}
+.product-accordion > summary { 
+  cursor: pointer; font-weight: 600; 
+}
+.product-accordion[open] { 
+  background: #fafafa; 
+}
+

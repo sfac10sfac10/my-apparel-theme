@@ -197,6 +197,10 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+                {%- comment -%}
+                  Product Specs Section
+                {%- endcomment -%}
+                {% render 'product-specs-table', product: product %}
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -676,6 +680,33 @@
                 {% render 'icon-with-text', block: block %}
             {%- endcase -%}
           {%- endfor -%}
+
+          {%- comment -%}
+            Size Chart (PDF)
+          {%- endcomment -%}
+
+          {% assign size_chart = product.metafields.custom.size_chart_pdf.value %}
+          {% if size_chart %}
+            <div class="size-chart">
+              <a class="button button--secondary"
+                href="{{ size_chart.url }}"
+                target="_blank" rel="noopener">
+                Size chart (PDF)
+              </a>
+            </div>
+          {% endif %}
+
+          {%- comment -%}
+            Material & Care
+          {%- endcomment -%}
+
+          {% assign mac = product.metafields.custom.material_and_care | strip %}
+          {% if mac != blank %}
+            <details class="product-accordion">
+              <summary>Material & Care</summary>
+              <div class="rte">{{ mac | newline_to_br }}</div>
+            </details>
+          {% endif %}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}

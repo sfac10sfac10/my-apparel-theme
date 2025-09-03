@@ -1,0 +1,27 @@
+{% comment %}
+  Renders a table from product metafield custom.specs (JSON)
+  Expected format:
+  { "Material": "100% Cotton", "Fit": "Relaxed", "Origin": "Japan" }
+{% endcomment %}
+
+{% assign specs = product.metafields.custom.specs.value %}
+{% if specs %}
+  <div class="product-specs">
+    <h3>Product specs</h3>
+    <table class="product-specs__table">
+      <tbody>
+        {% for pair in specs %}
+          {% assign key = pair[0] %}
+          {% assign val = pair[1] %}
+          {% if val != blank %}
+            <tr>
+              <th scope="row">{{ key | escape }}</th>
+              <td>{{ val }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+
