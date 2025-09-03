@@ -127,13 +127,13 @@
             "side_bar_title_color": "#ffffff",
             "side_bar_sale_color": "#ffffff",
             "side_bar_price_color": "#ffffff",
-            "side_bar_compare_price_color": "#C8C8C8",
+            "side_bar_compare_price_color": "#c8c8c8",
             "side_bar_button_color": "#313131",
             "side_bar_button_bg_color": "#ffffff",
-            "item_border_color": "#DDDDDD",
+            "item_border_color": "#dddddd",
             "item_title_color": "#313131",
             "item_price_color": "#313131",
-            "item_compare_price_color": "#C8C8C8",
+            "item_compare_price_color": "#c8c8c8",
             "item_separator_color": "#313131"
           }
         }
@@ -198,6 +198,47 @@
         "padding_bottom": 36
       }
     },
+    "featured_testimonials_LXPAHQ": {
+      "type": "featured-testimonials",
+      "blocks": {
+        "testimonial_cK99cH": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>I loved the Jean!</p>",
+            "author": "John Doe",
+            "photo": "shopify://shop_images/man-picture.png"
+          }
+        },
+        "testimonial_8kVHjM": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>This is awesome!</p>",
+            "author": "Nick Smith",
+            "photo": "shopify://shop_images/men-fashion-clothes-style.png"
+          }
+        },
+        "testimonial_gRKk4T": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Love the quality and the fit. Highly recommended!</p>",
+            "author": "Jason Foreman",
+            "photo": "shopify://shop_images/black-man-happy-face.png"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_cK99cH",
+        "testimonial_8kVHjM",
+        "testimonial_gRKk4T"
+      ],
+      "custom_css": [],
+      "name": "Featured testimonials",
+      "settings": {
+        "heading": "What our customers say",
+        "bg_color": "#dddddd",
+        "text_align": "center"
+      }
+    },
     "multicolumn": {
       "type": "multicolumn",
       "blocks": {
@@ -259,6 +300,7 @@
     "17567920431884006a",
     "collage",
     "video",
+    "featured_testimonials_LXPAHQ",
     "multicolumn"
   ]
 }
