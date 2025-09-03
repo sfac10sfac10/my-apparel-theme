@@ -1451,5 +1451,21 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Testimonials",
+    "settings": [
+      {
+        "type": "select",
+        "id": "testimonials_style",
+        "label": "Testimonials style",
+        "default": "sans",
+        "options": [
+          { "value": "sans",        "label": "Sans-serif" },
+          { "value": "serif",       "label": "Serif" },
+          { "value": "handwritten", "label": "Handwritten" }
+        ]
+      }
+    ]
   }
 ]

@@ -1,0 +1,139 @@
+{% comment %}
+  Featured Testimonials Section
+  - Background color, text alignment, heading (section settings)
+  - Blocks = testimonials (quote, author, photo)
+  - Uses global theme setting: settings.testimonials_style (sans/serif/handwritten)
+  - Renders each testimonial via the reusable snippet 'testimonial-item'
+{% endcomment %}
+
+{% liquid
+  assign align_class = 'ft-align-left'
+  if section.settings.text_align == 'center'
+    assign align_class = 'ft-align-center'
+  elsif section.settings.text_align == 'right'
+    assign align_class = 'ft-align-right'
+  endif
+%}
+
+<section id="featured-testimonials-{{ section.id }}"
+  class="featured-testimonials ft-style-{{ settings.testimonials_style }} {{ align_class }}"
+  style="--ft-bg: {{ section.settings.bg_color }};">
+  <div class="ft-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="ft-heading">{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="ft-grid">
+        {% for block in section.blocks %}
+          <div class="ft-item" {{ block.shopify_attributes }}>
+            {% render 'testimonial-item', block: block %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="ft-empty">Add testimonial blocks to display this section.</p>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .featured-testimonials { background: var(--ft-bg, #fff); padding: 3rem 1rem; }
+  .featured-testimonials .ft-container { max-width: 1200px; margin: 0 auto; }
+  .featured-testimonials .ft-heading { margin: 0 0 1.5rem; }
+  .featured-testimonials.ft-align-left   { text-align: left; }
+  .featured-testimonials.ft-align-center { text-align: center; }
+  .featured-testimonials.ft-align-right  { text-align: right; }
+
+  .featured-testimonials .ft-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .featured-testimonials .ft-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .featured-testimonials .ft-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .featured-testimonials .ft-item figure {
+    margin: 0; padding: 1rem; border: 1px solid rgba(0,0,0,.08);
+    border-radius: .75rem; background: #fff;
+  }
+  .featured-testimonials .ft-item .ft-photo {
+    display: block; width: 80px; height: 80px; border-radius: 9999px; object-fit: cover;
+    margin: 0 auto .75rem;
+  }
+  .featured-testimonials .ft-item blockquote {
+    margin: 0 0 .75rem; font-style: italic; line-height: 1.5;
+  }
+  .featured-testimonials .ft-item figcaption { opacity: .8; font-weight: 600; }
+
+  /* Global style variants via settings.testimonials_style */
+  .featured-testimonials.ft-style-sans       { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .featured-testimonials.ft-style-serif      { font-family: Georgia, "Times New Roman", Times, serif; }
+  .featured-testimonials.ft-style-handwritten { font-family: "Brush Script MT","Comic Sans MS",cursive; }
+</style>
+
+{% schema %}
+{
+  "name": "Featured testimonials",
+  "tag": "section",
+  "class": "section featured-testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "What our customers say"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f8fafc"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "center",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Testimonial text",
+          "default": "<p>Love the quality and the fit. Highly recommended!</p>"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "John Smith"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Author photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Featured testimonials", "category": "Custom sections" }
+  ]
+}
+{% endschema %}

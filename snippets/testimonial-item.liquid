@@ -1,0 +1,32 @@
+{% comment %}
+  Renders a single testimonial block
+  Expects 'block' param with:
+  - block.settings.quote (richtext)
+  - block.settings.author (text)
+  - block.settings.photo (image)
+{% endcomment %}
+
+{% assign quote  = block.settings.quote %}
+{% assign author = block.settings.author %}
+{% assign photo  = block.settings.photo %}
+
+<figure aria-label="Customer testimonial">
+  {% if photo %}
+    {%- assign img_alt = photo.alt | default: author | escape -%}
+    <img
+      class="ft-photo"
+      src="{{ photo | image_url: width: 160, height: 160, crop: 'center' }}"
+      alt="{{ img_alt }}"
+      width="160"
+      height="160"
+      loading="lazy">
+  {% endif %}
+
+  {% if quote %}
+    <blockquote>{{ quote }}</blockquote>
+  {% endif %}
+
+  {% if author %}
+    <figcaption>&mdash; {{ author | escape }}</figcaption>
+  {% endif %}
+</figure>
